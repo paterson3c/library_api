@@ -1,0 +1,8 @@
+#ignorar todo lo del venv
+venv/
+#ignorar la db de los usuarios
+#users/
+#ignorar la db de los archivos
+#libraries/
+#ignorar las descargas
+downloads/

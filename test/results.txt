@@ -1,0 +1,121 @@
+
+ >>> EMPIEZA EL TEST DE user.py <<< 
+
+Creando usuario antonio con password 1234...
+Debe devolver OK, si ya existe debe devolver ERROR
+
+ >>> [OK]: {'message': 'User succesfuly created', 'token': '8f5d2f11-2d7d-51d3-ad8c-7bbe53c9f600', 'uid': 'fb454110-1afb-4fdd-8835-08147fe67217'} <<< 
+
+Creando de nuevo otro usuario antonio con password 12345...
+Debe devolver ERROR
+
+>>> ERROR: {'Error': 'User already exists'} <<< 
+
+Iniciando sesion de usuario antonio con password 12345...
+Debe devolver ERROR y no devolver su uid
+
+ >>> [ERROR]: {'Error': 'Invalid password'}
+
+Iniciando sesion de usuario antonio con password 1234...
+Debe devolver OK y la uid y el token del usuario
+
+ >>> [OK]: {'token': '8f5d2f11-2d7d-51d3-ad8c-7bbe53c9f600', 'uid': 'fb454110-1afb-4fdd-8835-08147fe67217'}
+
+Actualizando password del usuario antonio a 123456...
+Debe devolver OK
+
+ >>> [OK]: {'Success': 'Password updated'}
+
+Iniciando sesion de usuario antonio con password 123456...
+Debe devolver OK y la uid y el token del usuario
+
+ >>> [OK]: {'token': '8f5d2f11-2d7d-51d3-ad8c-7bbe53c9f600', 'uid': 'fb454110-1afb-4fdd-8835-08147fe67217'}
+
+Eliminando usuario antonio...
+Debe devolver OK
+
+ >>> [OK]: {'Success': 'User antonio deleted'}
+
+Creando usuario antonio con password 1234...
+Debe devolver OK porque antes fue eliminado
+
+ >>> [OK]: {'message': 'User succesfuly created', 'token': 'c8951622-4fc9-5757-9405-0f1f81c555d7', 'uid': '33c351cc-6f5e-4c34-ada9-1442d643434d'} <<< 
+ >>> [OK]: {'token': 'c8951622-4fc9-5757-9405-0f1f81c555d7', 'uid': '33c351cc-6f5e-4c34-ada9-1442d643434d'}
+
+ >>> TERMINA EL TEST DE user.py <<< 
+
+
+
+ >>> EMPIEZA EL TEST DE file.py <<< 
+
+Creando archivo fichero_001.txt con el contenido 'texto de prueba del fichero' del usuario con UID '89'...
+Debe devolver ERROR
+
+ >>> [ERROR]: {'Error': 'User not found'} <<< 
+
+Creando archivo fichero_001.txt con el contenido 'texto de prueba del fichero' del usuario antonio...
+Debe devolver OK
+
+ >>> [OK]: {'message': "File 'fichero_001.txt' uploaded successfully"} <<< 
+
+Creando archivo fichero_002.txt con el contenido 'texto de prueba del fichero 2'
+Debe devolver OK
+
+ >>> [OK]: {'message': "File 'fichero_002.txt' uploaded successfully"} <<< 
+
+Listando archivos del usuario antonio...
+Debe devolver OK y los archivos fichero_001.txt y fichero_002.txt
+
+ >>> [OK]: {'files': ['fichero_001.txt', 'fichero_002.txt']} <<< 
+
+Eliminando archivo fichero_001.txt...
+Debe devolver OK
+
+ >>> [OK]: {'message': "File 'fichero_001.txt' deleted successfully"} <<< 
+
+Listando archivos del usuario antonio...
+Debe devolver OK y los archivos fichero_002.txt
+
+ >>> [OK]: {'files': ['fichero_002.txt']} <<< 
+
+Descargando archivo fichero_001.txt...
+Debe devolver ERROR
+
+ >>> [ERROR]: {'Error': 'File not found'} <<< 
+
+Descargando archivo fichero_002.txt...
+Debe devolver OK
+
+ >>> OK: {'message': "File 'fichero_002.txt' downloaded successfully"} <<< 
+
+Leyendo archivo fichero_001.txt...
+Debe devolver ERROR
+
+ >>> [ERROR]: {'Error': 'File not found'} <<< 
+
+Leyendo archivo fichero_002.txt...
+Debe devolver OK
+
+ >>> OK: {"Reading file 'fichero_002.txt'": "    b'texto de prueba del fichero'    "} <<< 
+
+modificandp archivo fichero_002.txt con el contenido 'hemos cambiado el contenido del fichero'
+Debe devolver OK
+
+ >>> [OK]: {'message': "File 'fichero_002.txt' uploaded successfully"} <<< 
+
+Leyendo archivo fichero_002.txt...
+Debe devolver OK
+
+ >>> OK: {"Reading file 'fichero_002.txt'": "    b'hemos cambiado el contenido del fichero'    "} <<< 
+
+ >>> TERMINA EL TEST DE file.py <<< 
+
+ >>> TODOS LOS TESTS HAN SIDO CORRECTOS <<< 
+
+Eliminando usuarios y archivos creados... 
+
+ >>> [OK]: {'message': "File 'fichero_002.txt' deleted successfully"} <<< 
+ >>> [OK]: {'Success': 'User antonio deleted'} <<< 
+
+ >>> FIN DE LOS TEST <<< 
+
